@@ -6,7 +6,7 @@
             <!-- Masthead Avatar Image-->
             <img class="masthead-avatar mb-5" src="<?= the_field('portfolio_image'); ?>" alt="<?= the_field('portfolio_title') ?>" />
             <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0"><?= the_field('portfolio_title'); ?></h1>
+            <h1 class="masthead-heading text-uppercase mb-0"><?= the_title(); ?></h1>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -18,29 +18,9 @@
         </div>
     </header>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <?php while (have_posts()) : the_post() ?>
     <main class="container py-5">
         <h2 class="text-center"><?= the_title(); ?></h2>
-
-        <div class="row">
-            <div class="col-md-8 offset-4">
-                <?= the_content(); ?>
-            </div>
-        </div>
-
+        <?= the_content(); ?>
     </main>
-    <?php endwhile; ?>
 
 <?php get_footer(); ?>
