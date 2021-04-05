@@ -18,9 +18,48 @@
         </div>
     </header>
 
-    <main class="container py-5">
-        <h2 class="text-center"><?= the_title(); ?></h2>
-        <?= the_content(); ?>
+    <main>
+        <section class="container py-5">
+            <h2 class="text-center"><?= the_title(); ?></h2>
+            <?= the_content(); ?>
+        </section>
+
+        <section class="text-center text-white bg-primary py-5">
+            <?php
+            if (have_rows('recent_works')):
+            while(have_rows('recent_works')): the_row()
+            ?>
+            <h2><?php the_sub_field('work_title') ?></h2>
+            <p><?php the_sub_field('work_content'); ?></p>
+
+            <div class="container">
+                <div class="row">
+
+                    <?php
+                    $query = new WP_Query(['post_type' => 'work', 'posts_per_page' => 6]);
+                    while($query->have_posts()):
+                        $query->the_post();
+                        ?>
+
+                        <div class="col-md-3 col-lg-3">
+                            <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
+                                <img class="img-fluid" src="<?= the_post_thumbnail_url() ?>" alt="" />
+                            </div>
+                        </div>
+
+                    <?php endwhile; ?>
+                </div>
+            </div>
+
+
+            <?php
+            endwhile;
+            endif;
+            ?>
+
+
+        </section>
+
     </main>
 
 <?php get_footer(); ?>

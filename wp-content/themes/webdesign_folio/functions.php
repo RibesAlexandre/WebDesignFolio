@@ -23,7 +23,8 @@ add_action('after_setup_theme', function () {
  *  Post Type pour les réalisations, on crée un nouveau post type pour gérer des éléments différents.
  *  Cela créera une nouvelle page dans le menu d'administration
  */
-add_action('init', function () {
+function works_post_type()
+{
     register_post_type('work', [
         'label' => 'Réalisation',
         'menu_icon' => 'dashicons-admin-customizer',
@@ -42,7 +43,7 @@ add_action('init', function () {
             'archives' => 'Archive des réalisations',
             'attributes' => 'Attributs des réalisations',
             'insert_into_item' => 'Insérer dans la réalisation',
-            'uploaded_to_this_item' => 'Uploader dans cette réalisation',
+            'uploaded_to_this_item' => 'Téléchargées dans cette réalisation',
             'filter_items_list' => 'Filtrer la liste des réalisations',
             'items_list_navigation' => 'Naviger dans la liste des réalisations',
             'items_list' => 'Liste des réalisations',
@@ -85,6 +86,10 @@ add_action('init', function () {
             'back_to_items' => __('&larr; Back to Categories', 'portfolio'),
         ]
     ]);
+}
+
+add_action('init', function () {
+    works_post_type();
 });
 
 register_activation_hook(__FILE__, 'flush_rewrite_rules');
